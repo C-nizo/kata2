@@ -6,14 +6,40 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.List;
 import java.util.Map;
+import java.io.ByteArrayInputStream;
+import java.nio.charset.StandardCharsets;
+import java.io.FileOutputStream;
 
 public class Main {
     static void main() {
-        try {
-            InputStream input = new FileInputStream("src/main/resources/libros.csv");
-            OutputStream output = System.out;
+        String csvData = """
+                titulo,genero
+                El principito,Ficción
+                1984,Distopía
+                Fahrenheit 451,Distopía
+                Dune,Ciencia ficción
+                Fundación,Ciencia ficción
+                La historia interminable,Fantasía
+                """;
 
-            process(input, output);
+        try (InputStream fileInput = new FileInputStream("src/main/resources/libros.csv"); InputStream memoryInput = new ByteArrayInputStream(csvData.getBytes(StandardCharsets.UTF_8))) {
+            System.out.println("File input: ");
+            process(fileInput, System.out);
+
+            System.out.println("\nMemory input: ");
+            process(memoryInput, System.out);
+
+            try (
+                    InputStream memoryInputForFile = new ByteArrayInputStream(
+                            csvData.getBytes(StandardCharsets.UTF_8)
+                    );
+                    OutputStream fileOutput = new FileOutputStream("genre-summary.txt")
+            ) {
+                process(memoryInputForFile, fileOutput);
+            }
+
+            System.out.println("\nSummary saved to genre-summary.txt");
+
         } catch (IOException e) {
             System.err.println("Error: " + e.getMessage());
         }
