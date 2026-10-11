@@ -1,0 +1,20 @@
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# Compilación
+target/
+out/
+build/
+bin/
+
+# Archivos generados
+*.class
+*.jar
+*.war
+*.zip
+*.exe
+*.log
+
+# Archivos temporales
+*.tmp
