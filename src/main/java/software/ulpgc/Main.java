@@ -1,18 +1,38 @@
 package software.ulpgc;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
 
 public class Main {
     static void main() {
+        String csvData = """
+                titulo,genero
+                El principito,Ficción
+                1984,Distopía
+                Fahrenheit 451,Distopía
+                Dune,Ciencia ficción
+                Fundación,Ciencia ficción
+                La historia interminable,Fantasía
+                """;
+
         try (
-                InputStream input = new FileInputStream("src/main/resources/libros.csv");
+                InputStream input1 = new FileInputStream("src/main/resources/libros.csv");
+                InputStream input2 = new ByteArrayInputStream(csvData.getBytes(StandardCharsets.UTF_8));
+                InputStream input3 = new ByteArrayInputStream(csvData.getBytes(StandardCharsets.UTF_8));
+                ByteArrayOutputStream output = new ByteArrayOutputStream()
         ) {
-            process(input, System.out);
+            System.out.println("File input: ");
+            process(input1, System.out);
+
+            System.out.println("\nMemory input: ");
+            process(input2, System.out);
+
+            System.out.println("\nMemory output: ");
+            process(input3, output);
+            System.out.println(output.toString(StandardCharsets.UTF_8));
+
         } catch (IOException e) {
             System.err.println("Error: " + e.getMessage());
         }
