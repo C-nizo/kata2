@@ -22,7 +22,11 @@ public class Main {
                 La historia interminable,Fantasía
                 """;
 
-        try (InputStream fileInput = new FileInputStream("src/main/resources/libros.csv"); InputStream memoryInput = new ByteArrayInputStream(csvData.getBytes(StandardCharsets.UTF_8))) {
+        try (
+                InputStream fileInput = new FileInputStream("src/main/resources/libros.csv");
+                InputStream memoryInput = new ByteArrayInputStream(
+                        csvData.getBytes(StandardCharsets.UTF_8))
+        ) {
             System.out.println("File input: ");
             process(fileInput, System.out);
 
