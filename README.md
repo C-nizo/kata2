@@ -94,6 +94,8 @@ Las pruebas de errores y consistencia se realizaron durante la primera repetici�
 
 ## 7. Vídeo explicativo
 
-**Pendiente de incorporar el enlace al vídeo.**
+[Ver vídeo explicativo de la Kata 2](https://youtu.be/-S89xyyaeaU)
 
-El vídeo mostrará la arquitectura, el funcionamiento de los streams, las transformaciones realizadas, las distintas combinaciones de entrada y salida y un ejemplo de error controlado. Su duración máxima será de 7 minutos.
+En el vídeo se presenta la arquitectura del programa, el funcionamiento
+de los streams, la transformación de los datos, las distintas
+combinaciones de entrada y salida y la gestión de errores.
